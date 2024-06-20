@@ -144,10 +144,11 @@ button:active {
     font-size: 0.8em; /* フォントサイズを小さくする */
 }
 
-@media (max-width: 600px) {
+/* PC画面とスマホ縦画面の両方に最適化するためのメディアクエリ */
+@media (max-width: 1200px) {
     .container {
-        width: 95%;
         padding: 20px;
+        margin: 10px;
     }
 
     h1 {
@@ -155,12 +156,46 @@ button:active {
     }
 
     button {
-        font-size: 14px;
+        font-size: 1em;
         padding: 12px;
     }
 
     .result p,
     .result span {
         font-size: 1.1em;
+    }
+}
+
+@media (max-width: 600px) {
+    .container {
+        width: 95%;
+        padding: 15px;
+        margin: 10px;
+    }
+
+    h1 {
+        font-size: 1.5em;
+    }
+
+    button {
+        font-size: 0.9em;
+        padding: 10px;
+    }
+
+    .result p,
+    .result span {
+        font-size: 1em;
+    }
+
+    label {
+        font-size: 1em;
+    }
+
+    select,
+    textarea,
+    button,
+    input[type="range"] {
+        padding: 10px;
+        font-size: 14px;
     }
 }
