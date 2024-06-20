@@ -9,6 +9,7 @@
 </head>
 <body>
     <div class="container">
+        <img src="QBHOUSE_logo_h_RGB.png" alt="QB HOUSE Logo" class="logo">
         <h1>初任給シミュレーション</h1>
         <form id="salaryForm">
             <div class="form-group">
@@ -81,8 +82,8 @@
                 <input type="range" id="attitude" name="attitude" min="1" max="5" value="3" step="1">
                 <div class="range-labels">
                     <span>ほとんど保てない</span>
-                   <span>普通に保てる</span>
-                   <span>常に保てる</span>
+                    <span>普通に保てる</span>
+                    <span>常に保てる</span>
                 </div>
             </div>
             <div class="form-group">
@@ -118,7 +119,7 @@
                 <div class="range-labels">
                     <span>ほとんどできない</span>
                     <span>普通にできる</span>
-                    <span>すべてできる</span>
+                    <span>常にできる</span>
                 </div>
             </div>
             <div class="form-group">
@@ -162,14 +163,13 @@
         </form>
         <div id="result" class="result">
             <h2>初任給:</h2>
-            <p>ベース給: <span id="baseSalary">¥0</span></p>
+            <p>基本給: <span id="baseSalary">¥0</span></p>
             <p>地域手当: <span id="locationAllowance">¥0</span></p>
             <p>資格手当: <span id="qualificationAllowance">¥0</span></p>
             <p>属人給: <span id="personalAllowance">¥0</span></p>
             <p>総額: <span id="totalSalary">¥0</span></p>
         </div>
     </div>
-
     <script src="script.js"></script>
 </body>
 </html>
