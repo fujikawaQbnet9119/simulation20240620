@@ -26,17 +26,20 @@ function calculateSalary() {
     const locationAllowance = getLocationAllowance(location);
     const personalAllowance = getPersonalAllowance(skillScores);
 
-    let totalSalary = baseSalary + qualificationAllowance + locationAllowance + personalAllowance;
+    // 基本給額（ベース給 + 属人給）
+    let basicSalary = baseSalary + personalAllowance;
 
-    // 基本給と属人給の合計が24万円または26万円を超えないように制限する
-    const salaryWithoutAllowances = baseSalary + personalAllowance;
+    // 基本給額が制限を超えないように調整
     if (experience >= 4 && menExperience >= 2) {
-        totalSalary = Math.min(salaryWithoutAllowances, 260000) + qualificationAllowance + locationAllowance;
+        basicSalary = Math.min(basicSalary, 260000);
     } else {
-        totalSalary = Math.min(salaryWithoutAllowances, 240000) + qualificationAllowance + locationAllowance;
+        basicSalary = Math.min(basicSalary, 240000);
     }
 
-    document.getElementById('baseSalary').textContent = `¥${baseSalary.toLocaleString()}`;
+    // 総額（基本給額 + 資格手当 + 地域手当）
+    const totalSalary = basicSalary + qualificationAllowance + locationAllowance;
+
+    document.getElementById('baseSalary').textContent = `¥${basicSalary.toLocaleString()}`;
     document.getElementById('locationAllowance').textContent = `¥${locationAllowance.toLocaleString()}`;
     document.getElementById('qualificationAllowance').textContent = `¥${qualificationAllowance.toLocaleString()}`;
     document.getElementById('personalAllowance').textContent = `¥${personalAllowance.toLocaleString()}`;
@@ -90,9 +93,9 @@ function getPersonalAllowance(skillScores) {
     };
 
     const weights = {
-        counseling: 0.1,
-        customerService: 0.1,
-        cuttingSkill: 0.4,
+        counseling: 0.15,
+        customerService: 0.15,
+        cuttingSkill: 0.3,
         menCutExperience: 0.4
     };
 
