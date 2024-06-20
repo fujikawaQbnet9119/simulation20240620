@@ -7,18 +7,18 @@ function calculateSalary() {
     const menExperience = parseInt(document.getElementById('menExperience').value);
 
     const skillScores = [
-        { score: parseInt(document.getElementById('understanding').value), weight: 0.1 },
-        { score: parseInt(document.getElementById('proposals').value), weight: 0.1 },
-        { score: parseInt(document.getElementById('conversation').value), weight: 0.1 },
-        { score: parseInt(document.getElementById('counseling').value), weight: 0.1 },
-        { score: parseInt(document.getElementById('attitude').value), weight: 0.1 },
-        { score: parseInt(document.getElementById('feedback').value), weight: 0.1 },
-        { score: parseInt(document.getElementById('satisfaction').value), weight: 0.1 },
-        { score: parseInt(document.getElementById('cutting').value), weight: 0.4 },
-        { score: parseInt(document.getElementById('efficiency').value), weight: 0.4 },
-        { score: parseInt(document.getElementById('requests').value), weight: 0.4 },
-        { score: parseInt(document.getElementById('clipper').value), weight: 0.4 },
-        { score: parseInt(document.getElementById('fade').value), weight: 0.4 }
+        { score: parseInt(document.getElementById('understanding').value), weight: 10 },
+        { score: parseInt(document.getElementById('proposals').value), weight: 10 },
+        { score: parseInt(document.getElementById('conversation').value), weight: 10 },
+        { score: parseInt(document.getElementById('counseling').value), weight: 10 },
+        { score: parseInt(document.getElementById('attitude').value), weight: 10 },
+        { score: parseInt(document.getElementById('feedback').value), weight: 10 },
+        { score: parseInt(document.getElementById('satisfaction').value), weight: 10 },
+        { score: parseInt(document.getElementById('cutting').value), weight: 40 },
+        { score: parseInt(document.getElementById('efficiency').value), weight: 40 },
+        { score: parseInt(document.getElementById('requests').value), weight: 40 },
+        { score: parseInt(document.getElementById('clipper').value), weight: 40 },
+        { score: parseInt(document.getElementById('fade').value), weight: 40 }
     ];
 
     const baseSalary = getBaseSalary(experience, menExperience);
@@ -85,7 +85,8 @@ function getLocationAllowance(location) {
 }
 
 function getPersonalAllowance(skillScores) {
-    const weightedScore = skillScores.reduce((sum, { score, weight }) => sum + (score * weight), 0);
+    const totalWeight = 100;
+    const weightedScore = skillScores.reduce((sum, { score, weight }) => sum + (score * weight), 0) / totalWeight;
 
     if (weightedScore >= 90) {
         return 35000;
