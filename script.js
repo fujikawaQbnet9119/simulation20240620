@@ -29,7 +29,7 @@ function calculateSalary() {
     // 基本給額（ベース給 + 属人給）
     let basicSalary = baseSalary + personalAllowance;
 
-    // 基本給額が制限を超えないように調整
+    // カット経験が5年以上且つメンズカット経験が3年以上の場合、基本給額が26万円を超えないように調整
     if (experience >= 4 && menExperience >= 2) {
         basicSalary = Math.min(basicSalary, 260000);
     } else {
@@ -42,7 +42,6 @@ function calculateSalary() {
     document.getElementById('baseSalary').textContent = `¥${basicSalary.toLocaleString()}`;
     document.getElementById('locationAllowance').textContent = `¥${locationAllowance.toLocaleString()}`;
     document.getElementById('qualificationAllowance').textContent = `¥${qualificationAllowance.toLocaleString()}`;
-    document.getElementById('personalAllowance').textContent = `¥${personalAllowance.toLocaleString()}`;
     document.getElementById('totalSalary').textContent = `¥${totalSalary.toLocaleString()}`;
 }
 
@@ -93,17 +92,17 @@ function getPersonalAllowance(skillScores) {
     };
 
     const weights = {
-        counseling: 0.15,
-        customerService: 0.15,
-        cuttingSkill: 0.3,
+        counseling: 0.1,
+        customerService: 0.1,
+        cuttingSkill: 0.4,
         menCutExperience: 0.4
     };
 
     const totalScore = (
-        (skillScores.slice(0, 4).reduce((sum, score) => sum + score, 0) / maxScores.counseling) * weights.counseling +
-        (skillScores.slice(4, 7).reduce((sum, score) => sum + score, 0) / maxScores.customerService) * weights.customerService +
-        (skillScores.slice(7, 10).reduce((sum, score) => sum + score, 0) / maxScores.cuttingSkill) * weights.cuttingSkill +
-        (skillScores.slice(10, 12).reduce((sum, score) => sum + score, 0) / maxScores.menCutExperience) * weights.menCutExperience
+        (skillScores.slice(0, 4).reduce((sum, score) => sum + score, 0) / (4 * 5)) * weights.counseling +
+        (skillScores.slice(4, 7).reduce((sum, score) => sum + score, 0) / (3 * 5)) * weights.customerService +
+        (skillScores.slice(7, 10).reduce((sum, score) => sum + score, 0) / (3 * 5)) * weights.cuttingSkill +
+        (skillScores.slice(10, 12).reduce((sum, score) => sum + score, 0) / (2 * 5)) * weights.menCutExperience
     ) * 100;
 
     if (totalScore >= 55) {
