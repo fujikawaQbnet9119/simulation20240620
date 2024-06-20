@@ -7,18 +7,18 @@ function calculateSalary() {
     const menExperience = parseInt(document.getElementById('menExperience').value);
 
     const skillScores = [
-        { score: parseInt(document.getElementById('understanding').value), weight: 0.1 },
-        { score: parseInt(document.getElementById('proposals').value), weight: 0.1 },
-        { score: parseInt(document.getElementById('conversation').value), weight: 0.1 },
-        { score: parseInt(document.getElementById('counseling').value), weight: 0.1 },
-        { score: parseInt(document.getElementById('attitude').value), weight: 0.1 },
-        { score: parseInt(document.getElementById('feedback').value), weight: 0.1 },
-        { score: parseInt(document.getElementById('satisfaction').value), weight: 0.1 },
-        { score: parseInt(document.getElementById('cutting').value), weight: 0.4 },
-        { score: parseInt(document.getElementById('efficiency').value), weight: 0.4 },
-        { score: parseInt(document.getElementById('requests').value), weight: 0.4 },
-        { score: parseInt(document.getElementById('clipper').value), weight: 0.4 },
-        { score: parseInt(document.getElementById('fade').value), weight: 0.4 }
+        parseInt(document.getElementById('understanding').value),
+        parseInt(document.getElementById('proposals').value),
+        parseInt(document.getElementById('conversation').value),
+        parseInt(document.getElementById('counseling').value),
+        parseInt(document.getElementById('attitude').value),
+        parseInt(document.getElementById('feedback').value),
+        parseInt(document.getElementById('satisfaction').value),
+        parseInt(document.getElementById('cutting').value),
+        parseInt(document.getElementById('efficiency').value),
+        parseInt(document.getElementById('requests').value),
+        parseInt(document.getElementById('clipper').value),
+        parseInt(document.getElementById('fade').value)
     ];
 
     const baseSalary = getBaseSalary(experience, menExperience);
@@ -85,21 +85,21 @@ function getLocationAllowance(location) {
 }
 
 function getPersonalAllowance(skillScores) {
-    const weightedScore = skillScores.reduce((sum, { score, weight }) => sum + (score * weight), 0);
+    const totalScore = skillScores.reduce((sum, score) => sum + score, 0);
 
-    if (weightedScore >= 4.0) {
+    if (totalScore >= 55) {
         return 35000;
-    } else if (weightedScore >= 3.6) {
+    } else if (totalScore >= 50) {
         return 30000;
-    } else if (weightedScore >= 3.2) {
+    } else if (totalScore >= 45) {
         return 25000;
-    } else if (weightedScore >= 2.8) {
+    } else if (totalScore >= 40) {
         return 20000;
-    } else if (weightedScore >= 2.4) {
+    } else if (totalScore >= 35) {
         return 15000;
-    } else if (weightedScore >= 2.0) {
+    } else if (totalScore >= 30) {
         return 10000;
-    } else if (weightedScore >= 1.6) {
+    } else if (totalScore >= 25) {
         return 5000;
     } else {
         return 0;
