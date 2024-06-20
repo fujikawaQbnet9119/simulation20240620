@@ -135,9 +135,13 @@ button:active {
 .range-labels {
     display: flex;
     justify-content: space-between;
-    font-size: 0.9em;
+    font-size: 0.8em;
     color: #777;
     margin-top: 5px;
+}
+
+.range-labels span {
+    font-size: 0.8em;  /* フォントサイズを調整 */
 }
 
 @media (max-width: 600px) {
