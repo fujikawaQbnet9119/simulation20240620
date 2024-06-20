@@ -7,27 +7,34 @@ function calculateSalary() {
     const menExperience = parseInt(document.getElementById('menExperience').value);
 
     const skillScores = [
-        { score: parseInt(document.getElementById('understanding').value), weight: 10 },
-        { score: parseInt(document.getElementById('proposals').value), weight: 10 },
-        { score: parseInt(document.getElementById('conversation').value), weight: 10 },
-        { score: parseInt(document.getElementById('counseling').value), weight: 10 },
-        { score: parseInt(document.getElementById('attitude').value), weight: 10 },
-        { score: parseInt(document.getElementById('feedback').value), weight: 10 },
-        { score: parseInt(document.getElementById('satisfaction').value), weight: 10 },
-        { score: parseInt(document.getElementById('cutting').value), weight: 40 },
-        { score: parseInt(document.getElementById('efficiency').value), weight: 40 },
-        { score: parseInt(document.getElementById('requests').value), weight: 40 },
-        { score: parseInt(document.getElementById('clipper').value), weight: 40 },
-        { score: parseInt(document.getElementById('fade').value), weight: 40 }
+        parseInt(document.getElementById('understanding').value),
+        parseInt(document.getElementById('proposals').value),
+        parseInt(document.getElementById('conversation').value),
+        parseInt(document.getElementById('counseling').value),
+        parseInt(document.getElementById('attitude').value),
+        parseInt(document.getElementById('feedback').value),
+        parseInt(document.getElementById('satisfaction').value),
+        parseInt(document.getElementById('cutting').value),
+        parseInt(document.getElementById('efficiency').value),
+        parseInt(document.getElementById('requests').value),
+        parseInt(document.getElementById('clipper').value),
+        parseInt(document.getElementById('fade').value)
     ];
 
-    const baseSalary = getBaseSalary(experience, menExperience);
+    const baseSalary = getBaseSalary(experience);
     const qualificationAllowance = getQualificationAllowance(qualification);
     const locationAllowance = getLocationAllowance(location);
     const personalAllowance = getPersonalAllowance(skillScores);
 
-    const totalSalary = baseSalary + qualificationAllowance + locationAllowance + personalAllowance;
-    
+    let totalSalary = baseSalary + qualificationAllowance + locationAllowance + personalAllowance;
+
+    // カット経験が5年以上でメンズカット経験が3年以上の場合のみ、26万円の対象
+    if (experience >= 4 && menExperience >= 2) {
+        totalSalary = Math.min(totalSalary, 260000);
+    } else {
+        totalSalary = Math.min(totalSalary, 240000);
+    }
+
     document.getElementById('baseSalary').textContent = `¥${baseSalary.toLocaleString()}`;
     document.getElementById('locationAllowance').textContent = `¥${locationAllowance.toLocaleString()}`;
     document.getElementById('qualificationAllowance').textContent = `¥${qualificationAllowance.toLocaleString()}`;
@@ -35,30 +42,19 @@ function calculateSalary() {
     document.getElementById('totalSalary').textContent = `¥${totalSalary.toLocaleString()}`;
 }
 
-function getBaseSalary(experience, menExperience) {
-    let base;
+function getBaseSalary(experience) {
     switch (experience) {
         case 1:
-            base = 195000;
-            break;
+            return 195000;
         case 2:
-            base = 205000;
-            break;
+            return 205000;
         case 3:
-            base = 215000;
-            break;
+            return 215000;
         case 4:
-            base = 225000;
-            break;
+            return 225000;
         default:
-            base = 0;
+            return 0;
     }
-    if (experience >= 4 && menExperience >= 2) {
-        base = Math.min(base, 260000);
-    } else {
-        base = Math.min(base, 240000);
-    }
-    return base;
 }
 
 function getQualificationAllowance(qualification) {
@@ -85,22 +81,40 @@ function getLocationAllowance(location) {
 }
 
 function getPersonalAllowance(skillScores) {
-    const totalWeight = 100;
-    const weightedScore = skillScores.reduce((sum, { score, weight }) => sum + (score * weight), 0) / totalWeight;
+    const maxScores = {
+        counseling: 20,
+        customerService: 15,
+        cuttingSkill: 15,
+        menCutExperience: 10
+    };
 
-    if (weightedScore >= 90) {
+    const weights = {
+        counseling: 0.1,
+        customerService: 0.1,
+        cuttingSkill: 0.4,
+        menCutExperience: 0.4
+    };
+
+    const totalScore = (
+        (skillScores.slice(0, 4).reduce((sum, score) => sum + score, 0) / maxScores.counseling) * weights.counseling +
+        (skillScores.slice(4, 7).reduce((sum, score) => sum + score, 0) / maxScores.customerService) * weights.customerService +
+        (skillScores.slice(7, 10).reduce((sum, score) => sum + score, 0) / maxScores.cuttingSkill) * weights.cuttingSkill +
+        (skillScores.slice(10, 12).reduce((sum, score) => sum + score, 0) / maxScores.menCutExperience) * weights.menCutExperience
+    ) * 100;
+
+    if (totalScore >= 55) {
         return 35000;
-    } else if (weightedScore >= 80) {
+    } else if (totalScore >= 50) {
         return 30000;
-    } else if (weightedScore >= 70) {
+    } else if (totalScore >= 45) {
         return 25000;
-    } else if (weightedScore >= 60) {
+    } else if (totalScore >= 40) {
         return 20000;
-    } else if (weightedScore >= 50) {
+    } else if (totalScore >= 35) {
         return 15000;
-    } else if (weightedScore >= 40) {
+    } else if (totalScore >= 30) {
         return 10000;
-    } else if (weightedScore >= 30) {
+    } else if (totalScore >= 25) {
         return 5000;
     } else {
         return 0;
