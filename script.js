@@ -87,19 +87,19 @@ function getLocationAllowance(location) {
 function getPersonalAllowance(skillScores) {
     const weightedScore = skillScores.reduce((sum, { score, weight }) => sum + (score * weight / 100), 0);
 
-    if (weightedScore >= 55) {
+    if (weightedScore >= 5.5) {
         return 35000;
-    } else if (weightedScore >= 50) {
+    } else if (weightedScore >= 5.0) {
         return 30000;
-    } else if (weightedScore >= 45) {
+    } else if (weightedScore >= 4.5) {
         return 25000;
-    } else if (weightedScore >= 40) {
+    } else if (weightedScore >= 4.0) {
         return 20000;
-    } else if (weightedScore >= 35) {
+    } else if (weightedScore >= 3.5) {
         return 15000;
-    } else if (weightedScore >= 30) {
+    } else if (weightedScore >= 3.0) {
         return 10000;
-    } else if (weightedScore >= 25) {
+    } else if (weightedScore >= 2.5) {
         return 5000;
     } else {
         return 0;
