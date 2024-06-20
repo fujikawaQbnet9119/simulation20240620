@@ -1,8 +1,11 @@
 /* styles.css */
 
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap');
+
 body {
     font-family: 'Noto Sans JP', sans-serif;
-    background: linear-gradient(to right, #b3e5fc, #e1f5fe); /* 水色のグラデーション背景 */
+    background: linear-gradient(to right, #74ebd5, #ACB6E5); /* グラデーション背景 */
     margin: 0;
     padding: 0;
     color: #333;
@@ -15,13 +18,13 @@ body {
 }
 
 .container {
-    width: 100%;
-    max-width: 1200px;
+    width: 90%;
+    max-width: 900px;
     margin: 20px;
     padding: 40px;
     background-color: #ffffff;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
     border: 1px solid #ddd;
     transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
     overflow-y: auto;
@@ -31,13 +34,13 @@ body {
 
 .container:hover {
     transform: translateY(-10px);
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
 }
 
 .logo {
     display: block;
     margin: 0 auto 20px;
-    max-width: 100%;
+    max-width: 200px;
     height: auto;
 }
 
@@ -46,13 +49,15 @@ h1 {
     color: #007BFF;
     font-size: 2.5em;
     margin-bottom: 30px;
+    font-family: 'Raleway', sans-serif;
     font-weight: 700;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
     white-space: nowrap; /* 改行しないようにする */
 }
 
 .form-group {
     margin-bottom: 25px;
+    position: relative;
 }
 
 label {
@@ -60,7 +65,7 @@ label {
     margin-bottom: 10px;
     font-weight: 700;
     color: #555;
-    font-size: 1.1em;
+    font-size: 1.2em;
 }
 
 select,
@@ -70,7 +75,7 @@ input[type="range"] {
     width: 100%;
     padding: 14px;
     font-size: 16px;
-    border: 1px solid #ccc;
+    border: 2px solid #ccc;
     border-radius: 8px;
     box-sizing: border-box;
     transition: border-color 0.3s, box-shadow 0.3s;
@@ -81,7 +86,7 @@ textarea:focus,
 button:focus,
 input[type="range"]:focus {
     border-color: #007BFF;
-    box-shadow: 0 0 8px rgba(0, 123, 255, 0.2);
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
     outline: none;
 }
 
@@ -93,6 +98,8 @@ button {
     transition: background-color 0.3s, transform 0.3s;
     font-size: 1.2em;
     font-weight: 700;
+    padding: 15px;
+    border-radius: 10px;
 }
 
 button:hover {
@@ -102,13 +109,14 @@ button:hover {
 
 button:active {
     background-color: #003f7f;
+    transform: translateY(0);
 }
 
 .result {
     margin-top: 40px;
     padding: 30px;
-    background-color: #f9fafb;
-    border-radius: 8px;
+    background-color: #f0f8ff;
+    border-radius: 10px;
     border: 1px solid #ccc;
     box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
 }
@@ -118,7 +126,7 @@ button:active {
     margin-bottom: 20px;
     color: #007BFF;
     text-align: center;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .result p {
@@ -136,13 +144,64 @@ button:active {
 .range-labels {
     display: flex;
     justify-content: space-between;
-    font-size: 0.8em; /* フォントサイズを小さくする */
+    font-size: 0.9em; /* フォントサイズを小さくする */
     color: #777;
     margin-top: 5px;
 }
 
 .range-labels span {
-    font-size: 0.8em; /* フォントサイズを小さくする */
+    font-size: 0.9em; /* フォントサイズを小さくする */
+}
+
+/* カスタムスライダー */
+input[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 12px;
+    background: #ddd;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+    border-radius: 5px;
+}
+
+input[type="range"]:hover {
+    opacity: 1;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 30px;
+    height: 30px;
+    background: url('scissors-icon.png') no-repeat center center / contain;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 50%;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+input[type="range"]::-moz-range-thumb {
+    width: 30px;
+    height: 30px;
+    background: url('scissors-icon.png') no-repeat center center / contain;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 50%;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+/* アニメーション */
+input[type="range"]:active::-webkit-slider-thumb {
+    transform: scale(1.2);
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
+}
+
+input[type="range"]:active::-moz-range-thumb {
+    transform: scale(1.2);
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
 }
 
 /* PC画面とスマホ縦画面の両方に最適化するためのメディアクエリ */
