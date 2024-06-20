@@ -28,11 +28,12 @@ function calculateSalary() {
 
     let totalSalary = baseSalary + qualificationAllowance + locationAllowance + personalAllowance;
 
-    // カット経験が5年以上でメンズカット経験が3年以上の場合のみ、26万円の対象
+    // 基本給と属人給の合計が24万円または26万円を超えないように制限する
+    const salaryWithoutAllowances = baseSalary + personalAllowance;
     if (experience >= 4 && menExperience >= 2) {
-        totalSalary = Math.min(totalSalary, 260000);
+        totalSalary = Math.min(salaryWithoutAllowances, 260000) + qualificationAllowance + locationAllowance;
     } else {
-        totalSalary = Math.min(totalSalary, 240000);
+        totalSalary = Math.min(salaryWithoutAllowances, 240000) + qualificationAllowance + locationAllowance;
     }
 
     document.getElementById('baseSalary').textContent = `¥${baseSalary.toLocaleString()}`;
@@ -89,10 +90,10 @@ function getPersonalAllowance(skillScores) {
     };
 
     const weights = {
-        counseling: 0.15,
-        customerService: 0.15,
-        cuttingSkill: 0.35,
-        menCutExperience: 0.35
+        counseling: 0.1,
+        customerService: 0.1,
+        cuttingSkill: 0.4,
+        menCutExperience: 0.4
     };
 
     const totalScore = (
