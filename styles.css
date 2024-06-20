@@ -1,174 +1,318 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>初任給シミュレーション</title>
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
-</head>
-<body>
-    <div class="container">
-        <img src="QBHOUSE_logo_h_RGB.png" alt="QB HOUSE Logo" class="logo">
-        <h1>初任給シミュレーション</h1>
-        <form id="salaryForm">
-            <div class="form-group">
-                <label for="experience">経験年数:</label>
-                <select id="experience" required>
-                    <option value="1">1年未満</option>
-                    <option value="2">1〜3年</option>
-                    <option value="3">3〜5年</option>
-                    <option value="4">5年以上</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="qualification">資格:</label>
-                <select id="qualification" required>
-                    <option value="0">美容師資格のみ</option>
-                    <option value="1">理容師資格のみ</option>
-                    <option value="2">美容師および理容師資格</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="location">勤務地:</label>
-                <select id="location" required>
-                    <option value="0">その他地域</option>
-                    <option value="1">中央区／港区／千代田区／台東区／墨田区／江東区</option>
-                    <option value="2">渋谷区／新宿区／目黒区／文京区／品川区／荒川区／豊島区／中野区／杉並区／世田谷区／大田区</option>
-                    <option value="3">江戸川区／葛飾区／足立区／北区／練馬区／板橋区／武蔵野市／三鷹市</option>
-                    <option value="4">神奈川県･千葉県･埼玉県</option>
-                    <option value="5">愛知県</option>
-                    <option value="6">大阪府･京都府･兵庫県</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="understanding">お客様の要望を聞いて、どの程度正確に理解できますか？</label>
-                <input type="range" id="understanding" name="understanding" min="1" max="5" value="3" step="1">
-                <div class="range-labels">
-                    <span>ほとんど理解できない</span>
-                    <span>普通に理解できる</span>
-                    <span>完全に理解できる</span>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="proposals">お客様に適切な提案をする際、どの程度の頻度でお客様が提案を受け入れてくれますか？</label>
-                <input type="range" id="proposals" name="proposals" min="1" max="5" value="3" step="1">
-                <div class="range-labels">
-                    <span>ほとんど受け入れてくれない</span>
-                    <span>半々の割合で受け入れてくれる</span>
-                    <span>すべて受け入れてくれる</span>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="conversation">お客様との会話がスムーズに進むことが多いですか？</label>
-                <input type="range" id="conversation" name="conversation" min="1" max="5" value="3" step="1">
-                <div class="range-labels">
-                    <span>あまり進まない</span>
-                    <span>普通に進む</span>
-                    <span>いつもスムーズに進む</span>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="counseling">幅広い年齢層や性別のお客様に対しても、適切なカウンセリングができますか？</label>
-                <input type="range" id="counseling" name="counseling" min="1" max="5" value="3" step="1">
-                <div class="range-labels">
-                    <span>ほとんどできない</span>
-                    <span>普通にできる</span>
-                    <span>常にできる</span>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="attitude">お客様に対して礼儀正しい態度を保つことができていますか？</label>
-                <input type="range" id="attitude" name="attitude" min="1" max="5" value="3" step="1">
-                <div class="range-labels">
-                    <span>ほとんど保てない</span>
-                    <span>普通に保てる</span>
-                    <span>常に保てる</span>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="feedback">お客様からのフィードバックに対して、どの程度対応できますか？</label>
-                <input type="range" id="feedback" name="feedback" min="1" max="5" value="3" step="1">
-                <div class="range-labels">
-                    <span>ほとんど対応できない</span>
-                    <span>普通に対応できる</span>
-                    <span>常に対応できる</span>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="satisfaction">お客様の満足度を高めるための対応がどの程度できていますか？</label>
-                <input type="range" id="satisfaction" name="satisfaction" min="1" max="5" value="3" step="1">
-                <div class="range-labels">
-                    <span>ほとんどできていない</span>
-                    <span>普通にできている</span>
-                    <span>常にできている</span>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="cutting">様々なヘアスタイルをカットできる技術がありますか？</label>
-                <input type="range" id="cutting" name="cutting" min="1" max="5" value="3" step="1">
-                <div class="range-labels">
-                    <span>ほとんどカットできない</span>
-                    <span>普通にカットできる</span>
-                    <span>すべてカットできる</span>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="efficiency">効率的かつ正確にカットすることができますか？</label>
-                <input type="range" id="efficiency" name="efficiency" min="1" max="5" value="3" step="1">
-                <div class="range-labels">
-                    <span>ほとんどできない</span>
-                    <span>普通にできる</span>
-                    <span>常にできる</span>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="requests">お客様のリクエストに応じたカットがどの程度できますか？</label>
-                <input type="range" id="requests" name="requests" min="1" max="5" value="3" step="1">
-                <div class="range-labels">
-                    <span>ほとんどできない</span>
-                    <span>普通にできる</span>
-                    <span>すべてできる</span>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="clipper">バリカンを使用して様々なスタイルを作る技術がありますか？</label>
-                <input type="range" id="clipper" name="clipper" min="1" max="5" value="3" step="1">
-                <div class="range-labels">
-                    <span>ほとんど作れない</span>
-                    <span>普通に作れる</span>
-                    <span>すべて作れる</span>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="fade">フェードカットや刈り上げスタイルを作る技術がありますか？</label>
-                <input type="range" id="fade" name="fade" min="1" max="5" value="3" step="1">
-                <div class="range-labels">
-                    <span>ほとんど作れない</span>
-                    <span>普通に作れる</span>
-                    <span>すべて作れる</span>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="menExperience">メンズカットの経験年数はどのくらいですか？</label>
-                <select id="menExperience" required>
-                    <option value="0">1年未満</option>
-                    <option value="1">1〜2年</option>
-                    <option value="2">3〜4年</option>
-                    <option value="3">5〜6年</option>
-                    <option value="4">7年以上</option>
-                </select>
-            </div>
-            <button type="button" onclick="calculateSalary()">シミュレーション</button>
-        </form>
-        <div id="result" class="result">
-            <h2>初任給:</h2>
-            <p>基本給: <span id="baseSalary">¥0</span></p>
-            <p>地域手当: <span id="locationAllowance">¥0</span></p>
-            <p>資格手当: <span id="qualificationAllowance">¥0</span></p>
-            <p>総額: <span id="totalSalary">¥0</span></p>
-        </div>
-    </div>
-    <script src="script.js"></script>
-</body>
-</html>
+/* styles.css */
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap');
+
+body {
+    font-family: 'Noto Sans JP', sans-serif;
+    background: linear-gradient(to right, #74ebd5, #ACB6E5); /* グラデーション背景 */
+    margin: 0;
+    padding: 0;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    width: 100vw;
+    box-sizing: border-box;
+}
+
+.container {
+    width: 90%;
+    max-width: 900px;
+    margin: 20px;
+    padding: 40px;
+    background-color: #ffffff;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+    border: 1px solid #ddd;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    overflow-y: auto;
+    max-height: 90vh;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.container::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    bottom: -10px;
+    left: -10px;
+    border-radius: 15px;
+    border: 1px solid rgba(0, 123, 255, 0.5);
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.container:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+}
+
+.container:hover::before {
+    opacity: 1;
+}
+
+.logo {
+    display: block;
+    margin: 0 auto 20px;
+    max-width: 200px;
+    height: auto;
+}
+
+h1 {
+    text-align: center;
+    color: #007BFF;
+    font-size: 2.5em;
+    margin-bottom: 30px;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 700;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    white-space: nowrap; /* 改行しないようにする */
+}
+
+.form-group {
+    margin-bottom: 25px;
+    position: relative;
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 700;
+    color: #555;
+    font-size: 1.2em;
+    transition: color 0.3s;
+}
+
+select,
+textarea,
+button,
+input[type="range"] {
+    width: 100%;
+    padding: 14px;
+    font-size: 16px;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    box-sizing: border-box;
+    transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
+}
+
+select:focus,
+textarea:focus,
+button:focus,
+input[type="range"]:focus {
+    border-color: #007BFF;
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
+    outline: none;
+}
+
+button {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    font-size: 1.2em;
+    font-weight: 700;
+    padding: 15px;
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+button::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300%;
+    height: 300%;
+    background: rgba(255, 255, 255, 0.3);
+    transition: all 0.5s;
+    border-radius: 50%;
+    z-index: -1;
+    transform: translate(-50%, -50%) scale(0.1);
+}
+
+button:hover::before {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+button:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+}
+
+button:active {
+    background-color: #003f7f;
+    transform: translateY(0);
+}
+
+.result {
+    margin-top: 40px;
+    padding: 30px;
+    background-color: #f0f8ff;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.result:hover {
+    background-color: #e0f0ff;
+    box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.result h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+    color: #007BFF;
+    text-align: center;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.result p {
+    font-size: 1.3em;
+    font-weight: bold;
+    color: #333;
+    margin: 10px 0;
+    transition: color 0.3s, text-shadow 0.3s;
+}
+
+.result span {
+    font-size: 1.3em;
+    color: #007BFF;
+}
+
+.result:hover p {
+    color: #007BFF;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.range-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9em; /* フォントサイズを小さくする */
+    color: #777;
+    margin-top: 5px;
+    transition: color 0.3s;
+}
+
+.range-labels span {
+    font-size: 0.9em; /* フォントサイズを小さくする */
+}
+
+.range-labels:hover {
+    color: #007BFF;
+}
+
+/* カスタムスライダー */
+input[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 12px;
+    background: #ddd;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+    border-radius: 5px;
+}
+
+input[type="range"]:hover {
+    opacity: 1;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 30px;
+    height: 30px;
+    background: url('scissors-icon.png') no-repeat center center / contain;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 50%;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+input[type="range"]::-moz-range-thumb {
+    width: 30px;
+    height: 30px;
+    background: url('scissors-icon.png') no-repeat center center / contain;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 50%;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+/* アニメーション */
+input[type="range"]:active::-webkit-slider-thumb {
+    transform: scale(1.2);
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
+}
+
+input[type="range"]:active::-moz-range-thumb {
+    transform: scale(1.2);
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
+}
+
+/* PC画面とスマホ縦画面の両方に最適化するためのメディアクエリ */
+@media (max-width: 1200px) {
+    .container {
+        padding: 20px;
+        margin: 10px;
+    }
+
+    h1 {
+        font-size: 2em;
+    }
+
+    button {
+        font-size: 1em;
+        padding: 12px;
+    }
+
+    .result p,
+    .result span {
+        font-size: 1.1em;
+    }
+}
+
+@media (max-width: 600px) {
+    .container {
+        width: 95%;
+        padding: 15px;
+        margin: 10px;
+    }
+
+    h1 {
+        font-size: 1.5em;
+    }
+
+    button {
+        font-size: 0.9em;
+        padding: 10px;
+    }
+
+    .result p,
+    .result span {
+        font-size: 1em;
+    }
+
+    label {
+        font-size: 1em;
+    }
+
+    select,
+    textarea,
+    button,
+    input[type="range"] {
+        padding: 10px;
+        font-size: 14px;
+    }
+}
