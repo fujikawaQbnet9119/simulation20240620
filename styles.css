@@ -2,7 +2,7 @@
 
 body {
     font-family: 'Noto Sans JP', sans-serif;
-    background: linear-gradient(to right, #f3f4f6, #ffffff);
+    background: linear-gradient(to right, #b3e5fc, #e1f5fe); /* 水色のグラデーション背景 */
     margin: 0;
     padding: 0;
     color: #333;
