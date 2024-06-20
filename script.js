@@ -7,18 +7,18 @@ function calculateSalary() {
     const menExperience = parseInt(document.getElementById('menExperience').value);
 
     const skillScores = [
-        { score: parseInt(document.getElementById('understanding').value), weight: 10 },
-        { score: parseInt(document.getElementById('proposals').value), weight: 10 },
-        { score: parseInt(document.getElementById('conversation').value), weight: 10 },
-        { score: parseInt(document.getElementById('counseling').value), weight: 10 },
-        { score: parseInt(document.getElementById('attitude').value), weight: 10 },
-        { score: parseInt(document.getElementById('feedback').value), weight: 10 },
-        { score: parseInt(document.getElementById('satisfaction').value), weight: 10 },
-        { score: parseInt(document.getElementById('cutting').value), weight: 40 },
-        { score: parseInt(document.getElementById('efficiency').value), weight: 40 },
-        { score: parseInt(document.getElementById('requests').value), weight: 40 },
-        { score: parseInt(document.getElementById('clipper').value), weight: 40 },
-        { score: parseInt(document.getElementById('fade').value), weight: 40 }
+        { score: parseInt(document.getElementById('understanding').value), weight: 0.1 },
+        { score: parseInt(document.getElementById('proposals').value), weight: 0.1 },
+        { score: parseInt(document.getElementById('conversation').value), weight: 0.1 },
+        { score: parseInt(document.getElementById('counseling').value), weight: 0.1 },
+        { score: parseInt(document.getElementById('attitude').value), weight: 0.1 },
+        { score: parseInt(document.getElementById('feedback').value), weight: 0.1 },
+        { score: parseInt(document.getElementById('satisfaction').value), weight: 0.1 },
+        { score: parseInt(document.getElementById('cutting').value), weight: 0.4 },
+        { score: parseInt(document.getElementById('efficiency').value), weight: 0.4 },
+        { score: parseInt(document.getElementById('requests').value), weight: 0.4 },
+        { score: parseInt(document.getElementById('clipper').value), weight: 0.4 },
+        { score: parseInt(document.getElementById('fade').value), weight: 0.4 }
     ];
 
     const baseSalary = getBaseSalary(experience, menExperience);
@@ -85,21 +85,21 @@ function getLocationAllowance(location) {
 }
 
 function getPersonalAllowance(skillScores) {
-    const weightedScore = skillScores.reduce((sum, { score, weight }) => sum + (score * weight / 100), 0);
+    const weightedScore = skillScores.reduce((sum, { score, weight }) => sum + (score * weight), 0);
 
-    if (weightedScore >= 5.5) {
+    if (weightedScore >= 4.0) {
         return 35000;
-    } else if (weightedScore >= 5.0) {
+    } else if (weightedScore >= 3.6) {
         return 30000;
-    } else if (weightedScore >= 4.5) {
+    } else if (weightedScore >= 3.2) {
         return 25000;
-    } else if (weightedScore >= 4.0) {
+    } else if (weightedScore >= 2.8) {
         return 20000;
-    } else if (weightedScore >= 3.5) {
+    } else if (weightedScore >= 2.4) {
         return 15000;
-    } else if (weightedScore >= 3.0) {
+    } else if (weightedScore >= 2.0) {
         return 10000;
-    } else if (weightedScore >= 2.5) {
+    } else if (weightedScore >= 1.6) {
         return 5000;
     } else {
         return 0;
