@@ -32,6 +32,14 @@ body {
 .container:hover {
     transform: translateY(-10px);
     box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+}
+
+.logo {
+    display: block;
+    margin: 0 auto 20px;
+    max-width: 100%;
+    height: auto;
+}
 
 h1 {
     text-align: center;
@@ -127,13 +135,13 @@ button:active {
 .range-labels {
     display: flex;
     justify-content: space-between;
-    font-size: 0.8em;
+    font-size: 0.8em; /* フォントサイズを小さくする */
     color: #777;
     margin-top: 5px;
 }
 
 .range-labels span {
-    font-size: 0.8em;  /* フォントサイズを調整 */
+    font-size: 0.8em; /* フォントサイズを小さくする */
 }
 
 @media (max-width: 600px) {
