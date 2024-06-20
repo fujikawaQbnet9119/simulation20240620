@@ -89,10 +89,10 @@ function getPersonalAllowance(skillScores) {
     };
 
     const weights = {
-        counseling: 0.1,
-        customerService: 0.1,
-        cuttingSkill: 0.4,
-        menCutExperience: 0.4
+        counseling: 0.15,
+        customerService: 0.15,
+        cuttingSkill: 0.35,
+        menCutExperience: 0.35
     };
 
     const totalScore = (
