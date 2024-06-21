@@ -123,3 +123,30 @@ function getPersonalAllowance(skillScores) {
         return 0;
     }
 }
+// Google Apps Scriptにシミュレーション結果を送信
+    const simulationResult = {
+        experience: experience,
+        baseSalary: baseSalary,
+        locationAllowance: locationAllowance,
+        qualificationAllowance: qualificationAllowance,
+        totalSalary: totalSalary
+    };
+
+    fetch('https://script.google.com/macros/s/AKfycbxfwoX9cHBLO-AyQV03tbUHWVP2a8rusLpKNMOWNJ0eC1m-0aFC6W35jBRf3o4_JXoygw/exec', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(simulationResult)
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.result === 'success') {
+            console.log('Simulation data saved successfully');
+        } else {
+            console.error('Error saving simulation data:', data.error);
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
