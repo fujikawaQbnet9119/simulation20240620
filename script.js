@@ -132,7 +132,7 @@ function getPersonalAllowance(skillScores) {
         totalSalary: totalSalary
     };
 
-    fetch('https://script.google.com/macros/s/AKfycbxfwoX9cHBLO-AyQV03tbUHWVP2a8rusLpKNMOWNJ0eC1m-0aFC6W35jBRf3o4_JXoygw/exec', {
+    fetch('https://script.google.com/macros/s/AKfycbzZEW8oIM1_1IP4fudL8ulWedTnH_OBC3C9fMq1Dl9dyk-fptqoHniFg6qCcpj4DXYy/exec', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
